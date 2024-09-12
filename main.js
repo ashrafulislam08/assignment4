@@ -1,5 +1,3 @@
-// Problem 1
-
 function calculateTax(income, expenses) {
   if (
     income <= 0 ||
@@ -15,10 +13,8 @@ function calculateTax(income, expenses) {
   return tax;
 }
 
-// Problem 2
-
 function sendNotification(email) {
-  if (email.indexOf("@") < 0) {
+  if (email.indexOf("@") < 0 || typeof email !== "string") {
     return "Invalid Email";
   }
   const username = email.split("@")[0];
@@ -26,8 +22,6 @@ function sendNotification(email) {
   const message = username + " " + "sent you an email from" + " " + domainName;
   return message;
 }
-
-// Problem 3
 
 function checkDigitsInName(name) {
   if (typeof name !== "string" || name === undefined) {
@@ -44,8 +38,6 @@ function checkDigitsInName(name) {
   return false;
 }
 
-// Problem 4
-
 function calculateFinalScore(obj) {
   if (typeof obj !== "object") {
     return "Invalid Input";
@@ -53,23 +45,25 @@ function calculateFinalScore(obj) {
 
   let familyScore = 0;
   if (obj.isFFamily === true) {
-    familyScore = 30;
+    familyScore = 20;
   }
 
   const totalScore = obj.testScore + obj.schoolGrade + familyScore;
   return totalScore >= 80 ? true : false;
 }
 
-// Problem 5
-
 function waitingTime(waitingTimes, serialNumber) {
-  if (serialNumber > waitingTimes.length) {
-    let totalTime = 0;
-    for (const time of waitingTimes) {
-      totalTime += time;
-    }
-    const averageTime = (totalTime) / waitingTime.length;
-    console.log(averageTime + (serialNumber - waitingTimes.length));
+  if (!Array.isArray(waitingTimes) || typeof serialNumber !== "number") {
+    return "Invalid Input";
   }
+  const queue = serialNumber - 1;
+  const completedInterview = queue - waitingTimes.length;
+
+  let totalTime = 0;
+  for (const time of waitingTimes) {
+    totalTime = totalTime + time;
+  }
+  const averageTime = Math.round(totalTime / waitingTimes.length);
+  const result = averageTime * completedInterview;
+  return result;
 }
-waitingTime([3, 5, 7, 11, 6], 10);

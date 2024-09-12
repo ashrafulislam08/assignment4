@@ -1,7 +1,6 @@
 function waitingTime(waitingTimes, serialNumber) {
-  console.log(waitingTimes, serialNumber);
-  if (!Array.isArray(waitingTimes) || isNaN(serialNumber) == true) {
-    console.log("Invalid Input");
+  if (!Array.isArray(waitingTimes) || typeof serialNumber !== "number") {
+    return "Invalid Input";
   }
   const queue = serialNumber - 1;
   const completedInterview = queue - waitingTimes.length;
@@ -19,5 +18,5 @@ console.log(waitingTime([13, 2], 6));
 console.log(waitingTime([13, 2, 6, 7, 10], 6));
 console.log(waitingTime([6], 4));
 console.log(waitingTime(7, 10));
-// console.log(waitingTime("[6,2]", 9));
-// console.log(waitingTime([7, 8, 3, 4, 5], "9"));
+console.log(waitingTime("[6,2]", 9));
+console.log(waitingTime([7, 8, 3, 4, 5], "9"));
